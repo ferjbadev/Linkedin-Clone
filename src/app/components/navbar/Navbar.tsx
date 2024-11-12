@@ -38,14 +38,23 @@ const Navbar = () => {
     };
 
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (profileRef.current && !profileRef.current.contains(event.target)) {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                profileRef.current &&
+                !(profileRef.current.contains(event.target as Node))
+            ) {
                 setProfileOpen(false);
             }
-            if (businessRef.current && !businessRef.current.contains(event.target)) {
+            if (
+                businessRef.current &&
+                !(businessRef.current.contains(event.target as Node))
+            ) {
                 setBusinessOpen(false);
             }
-            if (inputRef.current && !inputRef.current.contains(event.target)) {
+            if (
+                inputRef.current &&
+                !(inputRef.current.contains(event.target as Node))
+            ) {
                 setIsBlurred(false);
             }
         };
@@ -56,11 +65,13 @@ const Navbar = () => {
         };
     }, []);
 
+
+
     return (
         <nav className="relative w-full max-w-[1707px] h-[52px] bg-white mx-auto flex items-center justify-between px-20 pr-56">
             {/* Fondo desenfocado */}
             {isBlurred && (
-                <div className="fixed inset-0 bg-black bg-opacity-20 backdrop-blur-md backdrop-filter z-10" />
+                <div className="fixed inset-0 bg-black bg-opacity-5 backdrop-blur-sm backdrop-filter z-10" />
             )}
 
             {/* Contenido de la barra de navegación */}
@@ -83,8 +94,8 @@ const Navbar = () => {
                 </div>
             </div>
 
+            {/* Contenedor de Iconos */}
             <div className="flex space-x-7 text-gray-500 ml-auto">
-                {/* Contenedor de Iconos */}
                 <Link href="/" className="flex flex-col items-center">
                     <IoHome size={24} className="hover:text-black" />
                     <span className="text-xs">Inicio</span>
@@ -122,7 +133,6 @@ const Navbar = () => {
                     {/* Ventana Perfil */}
                     <div
                         className={clsx(
-                            "absolute top-full mt-2 w-40 p-4 bg-white shadow-lg rounded-lg",
                             { hidden: !profileOpen }
                         )}
                     >
@@ -144,7 +154,6 @@ const Navbar = () => {
                     {/* Ventana de Negocios */}
                     <div
                         className={clsx(
-                            "absolute top-full mt-2 w-40 p-4 bg-white shadow-lg rounded-lg",
                             { hidden: !businessOpen }
                         )}
                     >
